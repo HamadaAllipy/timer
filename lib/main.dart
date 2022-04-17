@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timer/app.dart';
+import 'package:timer/app_observer.dart';
 
-import 'presentation/pages/home_screen.dart';
-
-void main(){
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
+void main() {
+  BlocOverrides.runZoned(
+    () => runApp(const TimerApp()),
+    blocObserver: AppObserver(),
+  );
 }
